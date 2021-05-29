@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import './sign-in.styles.scss';
 
 const SignIn = () => {
@@ -9,8 +9,20 @@ const SignIn = () => {
     email: '',
     password: ''
   });
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const email = valueSigin.email;
+    const password = valueSigin.password;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setValueSigin({
+        email: '',
+        password: ''
+      })
+    } catch(error) {
+      alert('This account is Invalid')
+      console.log(error);
+    }
   }
   const handleChange = (name, value) => {
     setValueSigin({...valueSigin, [name]: value})
