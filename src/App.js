@@ -7,7 +7,7 @@ import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect, useSelector } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.action';
+import { setCurrentUser } from './redux/user/user.actions';
 
 const App = (props) => {
   const currentUser = useSelector(state => state.user.currentUser);
