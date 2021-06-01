@@ -6,7 +6,7 @@ import { auth } from '../../firebase/firebase.utils';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const currentUser = useSelector(state => state.user.currenUser);
+  const currentUser = useSelector(state => state.user.currentUser);
   return (
     <div className='header'>
       <Link to='/' className='logo-container'>
