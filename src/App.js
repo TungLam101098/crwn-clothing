@@ -10,13 +10,11 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect, useSelector } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
-
 import "./App.css";
 
-const App = (props) => {
+const App = ({ setCurrentUser }) => {
   const currentUser = useSelector(state => state.user.currentUser);
   useEffect(() => {
-    const { setCurrentUser } = props;
     auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -24,6 +22,7 @@ const App = (props) => {
           setCurrentUser({
             id: snapShot.id,
             ...snapShot.data(),
+            
           });
         });
       }
@@ -35,7 +34,7 @@ const App = (props) => {
       <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/shop" component={ShopPage} />
+        <Route path="/shop" component={ShopPage} />
         <Route exact path="/checkout" component={CheckoutPage} />
         <Route exact path="/signin" render = {() => currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)} />
       </Switch>

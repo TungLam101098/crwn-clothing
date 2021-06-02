@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
 const CheckoutPage = ({ cartItems, total }) => {
-  console.log(cartItems, total);
   return (
     <div className="checkout-page">
       <div className="checkout-header">
